@@ -6,15 +6,15 @@
 	<title>Test_technical_code</title>
 </head>
 <body>
-	<form>
+	<form onsubmit="return false;">
 		<div>
-			<input type="number" name="number" placeholder="Input Angka" id="number">
+			<input type="number" name="number" placeholder="Input Angka" id="number" value="1234">
 		</div>
 		<br>
 		<div>
-			<button id="btnSegitiga">Generate segitiga</button>
-			<button id="btnGanjil">Generate Bilangan Ganjil</button>
-			<button id="btnPrima">Generate Bilangan Prima</button>
+			<button onclick="fnSegitiga()">Generate segitiga</button>
+			<button onclick="fnGanjil()">Generate Bilangan Ganjil</button>
+			<button onclick="fnPrima()">Generate Bilangan Prima</button>
 		</div>
 		<div>
 			<h2>Result:</h2>
@@ -22,4 +22,54 @@
 		</div>
 	</form>
 </body>
+
+<script>
+	function fnSegitiga() {
+		var number = document.getElementById('number').value;
+		number = number.split('');
+		var segitiga = '';
+		var zero = '';
+		for (var i = 0; i < number.length; i++) {
+			zero += '0';
+			segitiga = segitiga + '<br>' + number[i] + zero;
+		}
+
+		document.getElementById('result').innerHTML = segitiga;
+	}
+
+	function fnGanjil() {
+		var number = document.getElementById('number').value;
+		var ganjil = '0';
+		for (var i = 1; i < number; i++) {
+			if (i % 2 != 0) {
+				ganjil = ganjil + ' ' + i;
+			}
+		}
+		document.getElementById('result').innerHTML = ganjil;
+	}
+
+	function checkPrima(n) {
+		var max = Math.sqrt(n);
+		for (var i = 2; i <= max; i++) {
+			if (n % i == 0 ) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	function fnPrima() {
+		var number = document.getElementById('number').value;	
+		var prima = '';
+		for (var n = 2; n < number; n++) {
+			if (checkPrima(n)) {
+				prima = prima + ' ' + n;
+			}
+		}
+
+		document.getElementById('result').innerHTML = prima;
+	}
+	
+</script>
+
 </html>
